@@ -1,0 +1,29 @@
+<?php
+
+namespace Database\Factories;
+
+use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Students;
+
+class StudentsFactory extends Factory
+{
+    /**
+     * Define the model's default state.
+     *
+     * @return array
+     */
+    protected $model = Students::class;
+    public function definition()
+    {
+        return [
+            'name' =>$this->faker->name,
+            'school_id' => function () {
+                return \App\Models\Schools::inRandomOrder()->first()->id;
+            },
+            'ordernumber' => function () {
+                return 1;
+            },
+
+        ];
+    }
+}
